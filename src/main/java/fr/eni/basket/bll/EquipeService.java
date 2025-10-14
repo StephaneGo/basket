@@ -7,6 +7,7 @@ import java.util.List;
 public interface EquipeService {
 
     /* Retourne la liste de toutes les équipes */
-    public List<Equipe> getEquipes();
+    //public abstract List<Equipe> getEquipes();
+    List<Equipe> getEquipes();
 
 }

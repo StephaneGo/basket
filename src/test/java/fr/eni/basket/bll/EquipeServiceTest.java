@@ -23,7 +23,8 @@ public class EquipeServiceTest {
     @DisplayName("test getAllEquipes Cas : des equipes existent")
     public void testGetAllEquipesCasDesEquipesExistent()
     {
-        //Arrange
+        //AAA
+        //Arrange = Préparation du test
         List<Equipe> equipes = new ArrayList<>();
         equipes.add(new Equipe(1, "U15F1"));
         equipes.add(new Equipe(2, "U15F2"));
@@ -34,7 +35,7 @@ public class EquipeServiceTest {
         List<Equipe> resultat = equipeService.getEquipes();
 
         //Assert
-        assertEquals(resultat.size(), 3);
+        assertEquals(equipes.size(), resultat.size());
 
 
     }

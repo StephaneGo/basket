@@ -16,8 +16,8 @@ public class EquipeServiceTestImpl implements EquipeService {
     private EquipeServiceTestImpl() {
         this.equipes = new HashSet<Equipe>();
         this.equipes.add(new Equipe(1, "U15F1"));
-        this.equipes.add(new Equipe(1, "U15F2"));
-        this.equipes.add(new Equipe(1, "U18M1"));
+        this.equipes.add(new Equipe(2, "U15F2"));
+        this.equipes.add(new Equipe(3, "U18M1"));
     }
 
     public void setEquipes(List<Equipe> equipes) {
