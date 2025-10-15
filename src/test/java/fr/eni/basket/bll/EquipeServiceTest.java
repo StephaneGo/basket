@@ -2,6 +2,7 @@ package fr.eni.basket.bll;
 
 
 import fr.eni.basket.bo.Equipe;
+import fr.eni.basket.dto.EquipeDTO;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +11,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 public class EquipeServiceTest {
@@ -37,7 +38,28 @@ public class EquipeServiceTest {
         //Assert
         assertEquals(equipes.size(), resultat.size());
 
+    }
+
+    @Test
+    @DisplayName("test d'ajout d'une équipe dans le cas de données valides ")
+    public void testAjoutEquipeCasDonneesValides()
+    {
+        //AAA
+        //Arrange = Préparation du test
+        List<Equipe> equipes = new ArrayList<>();
+        equipeService.setEquipes(equipes);
+        EquipeDTO equipeDTO = new EquipeDTO("U15F1");
+
+        //Act
+        Equipe equipe = equipeService.addEquipe(equipeDTO);
+
+        //Assert
+        assertNotNull(equipe);
+        assertEquals(equipe.getNom(), equipeDTO.nom());
+        assertTrue(equipe.getNoEquipe()>0);
 
     }
+
+
 
 }

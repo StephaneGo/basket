@@ -6,6 +6,9 @@ public class Equipe {
     private int noEquipe;
     private String nom;
 
+    public Equipe() {
+    }
+
     public Equipe(int noEquipe, String nom) {
         this.noEquipe = noEquipe;
         this.nom = nom;
