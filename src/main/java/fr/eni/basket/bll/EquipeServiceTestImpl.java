@@ -2,6 +2,7 @@ package fr.eni.basket.bll;
 
 import fr.eni.basket.bo.Equipe;
 import fr.eni.basket.dto.EquipeDTO;
+import fr.eni.basket.exceptions.EchecAjoutEquipe;
 import org.springframework.beans.BeanUtils;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -37,7 +38,10 @@ public class EquipeServiceTestImpl implements EquipeService {
         Equipe newEquipe = new Equipe();
         newEquipe.setNoEquipe(noEquipeIndex++);
         BeanUtils.copyProperties(equipeDto, newEquipe);
-        equipes.add(newEquipe);
+        boolean ajout = equipes.add(newEquipe);
+        if(!ajout) {
+            throw new EchecAjoutEquipe("Echec d'ajout de l'equipe " + equipeDto.nom());
+        }
 
         return newEquipe;
     }

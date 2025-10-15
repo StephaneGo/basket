@@ -3,6 +3,7 @@ package fr.eni.basket.bll;
 
 import fr.eni.basket.bo.Equipe;
 import fr.eni.basket.dto.EquipeDTO;
+import fr.eni.basket.exceptions.EchecAjoutEquipe;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -57,6 +58,22 @@ public class EquipeServiceTest {
         assertNotNull(equipe);
         assertEquals(equipe.getNom(), equipeDTO.nom());
         assertTrue(equipe.getNoEquipe()>0);
+
+    }
+
+    @Test
+    @DisplayName("Test ajout equipe cas échec de l'ajout")
+    public void testAjoutEquipeCasDonneesInvalides(){
+        //AAA
+        //Arrange = Préparation du test
+        List<Equipe> equipes = new ArrayList<>();
+        equipeService.setEquipes(equipes);
+        EquipeDTO equipeDTO = new EquipeDTO("equipe1");
+        Equipe equipe = equipeService.addEquipe(equipeDTO);
+
+        //Act + Assert
+        assertThrows(EchecAjoutEquipe.class, ()-> equipeService.addEquipe(equipeDTO));
+
 
     }
 
