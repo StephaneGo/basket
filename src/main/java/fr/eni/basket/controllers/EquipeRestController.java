@@ -2,8 +2,11 @@ package fr.eni.basket.controllers;
 
 import fr.eni.basket.bll.EquipeService;
 import fr.eni.basket.bo.Equipe;
+import fr.eni.basket.dal.EquipeDAO;
 import fr.eni.basket.dto.EquipeDTO;
+import fr.eni.basket.exceptions.EquipeDejaExistante;
 import jakarta.validation.Valid;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -17,8 +20,16 @@ import java.util.Optional;
 public class EquipeRestController {
     private EquipeService equipeService;
 
+    @Autowired
+    private EquipeDAO equipeDAO;
+
     public EquipeRestController( EquipeService equipeService){
         this.equipeService = equipeService;
+    }
+
+    @GetMapping("/test")
+    public List<Equipe> findAll(){
+        return equipeDAO.findAllEquipes();
     }
 
     @GetMapping("/equipes")
@@ -32,7 +43,7 @@ public class EquipeRestController {
         Optional<Equipe> equipeOpt = equipeService.findEquipeByNom(nom);
 
         if(equipeOpt.isEmpty()){
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
         }
         return ResponseEntity.ok(equipeOpt.get());
     }
@@ -56,7 +67,12 @@ public class EquipeRestController {
             return ResponseEntity.badRequest().build();
         }
 
-        Equipe newEquipe = equipeService.addEquipe(equipeDto);
+        Equipe newEquipe = null;
+        try {
+            newEquipe = equipeService.addEquipe(equipeDto);
+        }catch(EquipeDejaExistante ede){
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
+        }
 
         return ResponseEntity.status(HttpStatus.CREATED).body(newEquipe);
     }
