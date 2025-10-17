@@ -2,6 +2,7 @@ package fr.eni.basket.bll;
 
 
 import fr.eni.basket.bo.Joueur;
+import fr.eni.basket.dto.JoueurDTO;
 
 import java.util.List;
 import java.util.Optional;
@@ -13,5 +14,5 @@ public interface JoueursService {
 
     Optional<Joueur> getJoueur(int id);
 
-    Joueur ajouterJoueur(Joueur joueur);
+    Joueur ajouterJoueur(JoueurDTO joueur);
 }

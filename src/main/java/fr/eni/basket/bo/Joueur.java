@@ -100,8 +100,11 @@ public class Joueur {
     @Override
     public String toString() {
         return "Joueur{" +
-                "nom='" + nom + '\'' +
+                "noJoueur=" + noJoueur +
+                ", nom='" + nom + '\'' +
                 ", prenom='" + prenom + '\'' +
+                ", email='" + email + '\'' +
+                ", equipe=" + equipe +
                 '}';
     }
 }
