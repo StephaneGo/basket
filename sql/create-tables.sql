@@ -1,19 +1,20 @@
-create table EQUIPES(  
-    noEquipe int NOT NULL PRIMARY KEY IDENTITY,  
-    nom varchar(30)
-    );  
+
+
+create table EQUIPES(
+                        noEquipe int NOT NULL PRIMARY KEY IDENTITY,
+                        nom varchar(30)
+);
 
 ALTER TABLE EQUIPES
-ADD CONSTRAINT unique_nom UNIQUE (nom);
-
+    ADD CONSTRAINT unique_nom UNIQUE (nom);
 
 create table JOUEURS(
-	noJoueur int NOT NULL PRIMARY KEY IDENTITY,
-	prenom varchar(30) not null,
-	nom  varchar(30) not null,
-	email varchar(30) null,
-	noEquipe int not null)
+                        noJoueur int NOT NULL PRIMARY KEY IDENTITY,
+                        prenom varchar(30) not null,
+                        nom  varchar(30) not null,
+                        email varchar(30) null,
+                        noEquipe int  null)
 
-alter table JOUEURS 
-add foreign key (noEquipe) references EQUIPES(noEquipe)
-    on delete set null ;
+alter table JOUEURS
+    add foreign key (noEquipe) references EQUIPES(noEquipe)
+        on delete set null ;
