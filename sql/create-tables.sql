@@ -16,3 +16,4 @@ create table JOUEURS(
 
 alter table JOUEURS 
 add foreign key (noEquipe) references EQUIPES(noEquipe)
+    on delete set null ;
